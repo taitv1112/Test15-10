@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Viết chương trình nhập vào từ ô input, hiện kết quả ra thẻ p:</title>
+</head>
+<body>
+<!--4. Viết chương trình nhập vào từ ô input, hiện kết quả ra thẻ p:-->
+<!--a. Nhập vào a, hiển thị ra chu vi và diện tích và hình vuông độ dài-->
+<!--cạnh a.-->
+<!--b. Nhập vào a và b, tính a^2, a^b.-->
+<!--c. Nhập vào a và b, tính tổng các số từ a đến b.-->
+<!--d. Nhập vào a là năm, in ra thế kỉ.-->
+<!--e. Nhập vào 1 năm, in ra tháng 2 của năm đó có bao nhiêu ngày.-->
+<!--f. Nhập vào a, b, c, kiểm tra xem a, b, c có phải là 3 cạnh của:-->
+<!--i. 1 tam giác?-->
+<!--ii. 1 tam giác cân?-->
+<!--iii. 1 tam giác đều?-->
+<label>Nhập cạnh a: <input type="text" id="canhA"></label> <br>
+<label>Nhập cạnh a: <input type="text" id="canhB"></label> <br>
+
+<label> <input type="button" value="Diện Tích" onclick="dienTich('canhA')" ></label>
+<label> <input type="button" value="chu vi" onclick="chuvi('canhB')" ></label>
+
+<label>Nhập a: <input type="text" id= "a"></label> <br>
+<label>Nhập b: <input type="text" id= "b"></label> <br>
+<label> <input type="button" value="binh phuong" onclick="binhPhuong('a')" ></label> <br>
+<label> <input type="button" value="a mũ b" onclick="a_Mu_b()" ></label> <br>
+<label> <input type="button" value="a mũ b" onclick="tongA_den_B()" ></label> <br>
+
+
+<p id="result" ></p>
+<p id="result1" ></p>
+<p id="result2" ></p>
+<p id="result3" ></p>
+<p id="result4" ></p>
+
+
+<label>Nhập năm: <input type="text" id= "nam"></label> <br>
+<label> <input type="button" value="Thế kỉ" onclick="theki()" ></label> <br>
+<p id="result5" ></p>
+<label>Nhập năm: <input type="text" id= "thang2"></label> <br>
+<label> <input type="button" value="tháng 2" onclick="thang2()" ></label> <br>
+<p id="result6" ></p>
+
+    <script>
+
+        function dienTich(){
+            let canhA = document.getElementById("canhA").value;
+            let result = 0;
+            result  = canhA*canhA ;
+            document.getElementById("result").innerText = "Dien tich tam giac canh a la :"+ result;
+        }
+        function chuvi(){
+            let canhB = document.getElementById("canhB").value;
+            let result1 = 0;
+            result1  = canhB*4;
+            document.getElementById("result1").innerText ="Chu vi tam giac canh a la :" + result1;
+        }
+
+        function  binhPhuong(){
+            let a = document.getElementById("a").value;
+            result2  = a*a;
+            document.getElementById("result2").innerText ="Bình phương của a là:" + result2;
+        }
+        function  a_Mu_b(a,b){
+            let a = document.getElementById("a").value;
+            let b = document.getElementById("b").value;
+            result3  = a ** b;
+            document.getElementById("result3").innerText ="a mũ b là:" + result3;
+        }
+        function tongA_den_B(){
+            let a = document.getElementById("a").value;
+            let b = document.getElementById("b").value;
+            let result4 =0 ;
+            if(a<b){
+                for(let i=a ; i<=b; i++){
+                    result4 +=i ;
+                }
+            }else {
+                for(let i=b ; i<=a; i++){
+                    result4 +=i ;
+                }
+            }
+            document.getElementById("result4").innerText ="tổng a đến b là" + result4;
+        }
+        function theki(){
+            let nam = document.getElementById("nam").value;
+            let theKi = Math.floor(nam/100);
+            document.getElementById("result5").innerText ="Thế kỉ là :" + theKi;
+        }
+        function thang2(){
+            let nam = +document.getElementById("thang2").value;
+            if(nam % 4 ===0){
+                if(nam % 100 ===0 && nam%400 !== 0){
+                    document.getElementById("result6").innerText ="tháng 2 có 28 ngày" ;
+                }else {
+                    document.getElementById("result6").innerText ="tháng 2 có 29 ngày" ;
+                }
+
+
+            }else {
+                document.getElementById("result6").innerText ="tháng 2 có 28 ngày" ;
+            }
+        }
+        let canh1 = +prompt("Nhập cạnh thứ 1 của tam giác ")
+        let canh2 = +prompt("Nhập cạnh thứ 2 của tam giác ")
+        let canh3 = +prompt("Nhập cạnh thứ 3 của tam giác ")
+        function  checkTamgiac(canh1,canh2,canh3){
+            if(canh1+canh2 <canh3 && canh1+canh3 <canh2 && canh2+canh3 < canh1){
+                alert("dữ liệu nhập vào không phải là 3 cạnh của tam giác")
+            } else {
+                alert("du lieu nhap vao la 3 canh cua tam giac ")
+            }
+        }
+        function  checkTamGiacCan(canh1,canh2,canh3){
+            if(canh1 === canh2 || canh1 === canh3 ||canh2=== canh3) {
+                alert("tam giac da cho la tam giac can")
+            }
+            else{
+                alert("khong phai tam giac can")
+            }
+        }
+
+        function  checkTamGiacDeu(canh1,canh2,canh3){
+            if(canh1 === canh2 && canh1 === canh3 && canh2=== canh3) {
+                alert("tam giac da cho la tam giac đều")
+            }
+            else{
+                alert("khong phai tam giac đều")
+            }
+        }
+        checkTamgiac(canh1,canh2,canh3);
+        checkTamgiacCan(canh1,canh2,canh3);
+        checkTamgiacDeu(canh1,canh2,canh3);
+
+    </script>
+
+</body>
+</html>
